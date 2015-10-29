@@ -63,11 +63,12 @@ void setup()
 
   // DISPLAY SETTINGS
   //size(960, 540, P3D);
-  //size(displayWidth, displayHeight);
+  size(displayWidth, displayHeight);
   
   frameRate(60);
   smooth();
   
+  initMidi();
 
   // FLOCK
   flock = new Flock();

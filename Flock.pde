@@ -7,7 +7,8 @@ class Flock
 
 
   int minBoids = 0;
-  int maxBoids = 400;
+  int maxBoids = 50;
+  int distThresh = 300;
   
   float separationWeight;
   float alignmentWeight;
@@ -31,11 +32,37 @@ class Flock
 
   void run() 
   {
+    //separationWeight = getMidiFloat( MidiParam.SEP );
+    //alignmentWeight  = getMidiFloat( MidiParam.ALI );
+    //cohesionWeight   = getMidiFloat( MidiParam.COH );
+    
     synchronized(boids)
     {
       for (Boid b : boids) 
       {
         b.run();  // Passing the entire list of boids to each boid individually
+        
+        drawLinesToTargets( b );
+      }
+    }
+  }
+  
+  void drawLinesToTargets( Boid b )
+  {
+    
+    int sWeight = 1;
+    int sColour = 255;
+    int sAlpha  = 100;
+    
+    strokeWeight( sWeight );
+    stroke( sColour, sAlpha );
+    for( FlockingTarget t : targets )
+    {
+      float d = dist(b.location.x, b.location.y, t.targetPos.x, t.targetPos.y); 
+      if( d < distThresh )
+      {
+        stroke( sColour, map( d, 0, distThresh, 255, 0 ) );
+        line( b.location.x, b.location.y, t.targetPos.x, t.targetPos.y );
       }
     }
   }

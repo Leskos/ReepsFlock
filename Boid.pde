@@ -64,7 +64,7 @@ class Boid
   {
     flock( myFlock.boids );
     update();
-    render();
+    //render();
   }
 
 

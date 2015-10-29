@@ -19,21 +19,21 @@ void initMidi()
   midi = new MidiBus(this, "BCF2000", "BCF2000"); 
 
   // This initializes the MIDI CC numbers related to each parameter
-  midiMap.put( 1, MidiParam.PARAM1 );
-  midiMap.put( 2, MidiParam.PARAM2 );                                      // EDIT MIDI CCs HERE
-  midiMap.put( 3, MidiParam.PARAM3 );
+  midiMap.put( 1, MidiParam.SEP );
+  midiMap.put( 2, MidiParam.ALI );                                      // EDIT MIDI CCs HERE
+  midiMap.put( 3, MidiParam.COH );
 
   // This initialises the ranges to map each parameter to
   paramRanges = new PVector[ MidiParam.values().length ];
   
-  paramRanges[ MidiParam.PARAM1.ordinal() ] = new PVector( 0, 255 );
-  paramRanges[ MidiParam.PARAM2.ordinal() ] = new PVector( 0, 255 );       // EDIT MIDI RANGES HERE
-  paramRanges[ MidiParam.PARAM3.ordinal() ] = new PVector( 0, 255 );
+  paramRanges[ MidiParam.SEP.ordinal() ] = new PVector( 0, 5 );
+  paramRanges[ MidiParam.ALI.ordinal() ] = new PVector( 0, 5 );       // EDIT MIDI RANGES HERE
+  paramRanges[ MidiParam.COH.ordinal() ] = new PVector( 0, 5 );
   
   // Initialise default values for parameters
-  paramVals.put( MidiParam.PARAM1,   0f );
-  paramVals.put( MidiParam.PARAM2, 255f );                                 // EDIT DEFAULT VALUES HERE
-  paramVals.put( MidiParam.PARAM3,   0f );
+  paramVals.put( MidiParam.SEP, 100f );
+  paramVals.put( MidiParam.ALI, 150f );                              // EDIT DEFAULT VALUES HERE
+  paramVals.put( MidiParam.COH, 200f );
   
 }
 
