@@ -7,9 +7,9 @@ BlobDetection theBlobDetection;
 PImage img;
 boolean newFrame=false;
 
-float x = 100;   // x location of square
-float y = 0;     // y location of square
-float speed = 0;   // speed of square
+float x = 100;        // x location of square
+float y = 0;          // y location of square
+float speed = 0;      // speed of square
 float gravity = 0.1;  
 
 
@@ -18,7 +18,7 @@ void setupKinect()
 {
   // initialize SimpleOpenNI object
   context = new SimpleOpenNI(this);
-  if (context.isInit()==false) 
+  if ( context.isInit()==false ) 
   {
     // if context.enableScene() returns false
     println("Kinect not connected!");
@@ -42,13 +42,12 @@ void setupKinect()
 
 void drawKinect()
 {
-  // KINECT
   context.update();
+  
   // put the image into a PImage
   cam = context.userImage();
   cam.loadPixels();
   color black = color(0, 0, 0, 0);
-  
   
   // filter out grey pixels (mixed in depth image)
   for (int i=0; i<cam.pixels.length; i++)
@@ -100,7 +99,7 @@ FlockingTarget[] getTargetsFromBlob( int blobIndex )
       float xCenter = b.xMin*width  + (( b.w*width  )/2);
       float yCenter = b.yMin*height + (( b.h*height )/2);
       
-        // CREATE TARGET IN CENTER WITH MASSIVE RANGE AND SMALL POSITIVE ATTRACTION FORCE
+      // CREATE TARGET IN CENTER WITH MASSIVE RANGE AND SMALL POSITIVE ATTRACTION FORCE
       returnedTargets[0] = new FlockingTarget( new PVector(xCenter, yCenter), 20000, 2 );
       
       // FILL THE REST OF THE TARGETS ARRAY
